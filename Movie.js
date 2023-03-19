@@ -1,10 +1,10 @@
 class Movie {
-  constructor(title, actors, genre, releaseDate, keywords, description, image) {
+  constructor(title, actors, genre, releaseDate, awards, description, image) {
     this.title = title;
     this.actors = actors;
     this.genre = genre;
     this.releaseDate = releaseDate;
-    this.keywords = keywords;
+    this.awards = awards;
     this.description = description;
     this.image = image;
     this.hidden = this.#getHiddedTitle();
@@ -42,17 +42,18 @@ function removeSpecialCharacters(wordList) {
 }
 
 function movieFromResponse(response) {
-  const { short } = response;
-  let {
-    genre, description, image, keywords,
-  } = short;
-  let title = short.name;
-  let actors = short.actor.map((actor) => actor.name);
-  let releaseDate = short.datePublished;
-  [title, actors, genre, releaseDate, keywords, description, image] = removeSpecialCharacters(
-    [title, actors, genre, releaseDate, keywords, description, image],
+  
+  let title = response.Title;
+  let genre = response.Genre;
+  let description = response.Plot;
+  let image = response.Poster;
+  let awards = response.Awards;
+  let actors = response.Actors;
+  let releaseDate = response.Released;
+  [title, actors, genre, releaseDate, awards, description, image] = removeSpecialCharacters(
+    [title, actors, genre, releaseDate, awards, description, image],
   );
-  const movie = new Movie(title, actors, genre, releaseDate, keywords, description, image);
+  const movie = new Movie(title, actors, genre, releaseDate, awards, description, image);
   return movie;
 }
 

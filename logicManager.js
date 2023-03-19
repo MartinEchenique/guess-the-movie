@@ -10,7 +10,14 @@ const game = { roundPoints: 10, totalPoints: 0, isNewGame: true };
 
 async function changeMovieData() {
   const id = moviesArray.splice(Math.floor(Math.random() * moviesArray.length), 1)[0];
-  const response = await fetch(`/*api call*/`, { mode: 'cors' });
+  const response = await fetch(`http://localhost:8080/random+title`, { 
+    mode: "cors",
+    method:"GET",
+    headers:{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+   });
   const data = await response.json();
   movie = movieFromResponse(data);
 }
@@ -46,7 +53,7 @@ function handleWrongAnswer() {
       game.roundPoints -= 2;
       break;
     case 6:
-      observer.notify('movieDataUnhidden', 'keyword', movie.keywords);
+      observer.notify('movieDataUnhidden', 'keyword', movie.awards);
       game.roundPoints -= 3;
       break;
     case 3:

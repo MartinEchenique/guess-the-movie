@@ -73,7 +73,7 @@ function letterStatusChangeDisplayHandler(letter, status) {
 function movieDataUnhiddenDisplay(dataName, dataContent) {
   switch (dataName) {
     case 'genre':
-      elementsReference.movieGenre.textContent = `${dataContent.join(', ')}`;
+      elementsReference.movieGenre.textContent = `${dataContent}`;
       elementsReference.movieGenre.classList.add('show');
       toggleClassWithDelay(elementsReference.movieGenre, 1000, 'marked');
       elementsReference.movieGenre.previousElementSibling.classList.add('show');
@@ -85,7 +85,7 @@ function movieDataUnhiddenDisplay(dataName, dataContent) {
       elementsReference.releaseDate.previousElementSibling.classList.add('show');
       break;
     case 'actors':
-      elementsReference.movieActors.textContent = `${dataContent.join(', ')}`;
+      elementsReference.movieActors.textContent = `${dataContent}`;
       elementsReference.movieActors.classList.add('show');
       toggleClassWithDelay(elementsReference.movieActors, 1000, 'marked');
       elementsReference.movieActors.previousElementSibling.classList.add('show');
